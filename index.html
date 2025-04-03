@@ -102,7 +102,7 @@
                         <div>
                             <h4>Call Us</h4>
                             <a href="tel:+91 80750 36021" style="text-decoration: none; color: var(--dark)"> <p>+91 80750 36021</p> </a>
-                            <a href="tel:+91 80750 36021" style="text-decoration: none;color: var(--dark)"></a> <p>+91 94474 07217</p> </a>
+                            <a href="tel:+91 94474 07217" style="text-decoration: none;color: var(--dark)"></a> <p>+91 94474 07217</p> </a>
                         </div>
                     </div>
                     
@@ -248,20 +248,48 @@
                 }
             });
         });
-        document.getElementById("whatsappButton").addEventListener("click", function() {
-    const name = document.getElementById("name").value.trim();
-    const service = document.getElementById("service");
-    const selectedService = service.options[service.selectedIndex]?.text || "";
+        document.addEventListener('DOMContentLoaded', function() {
+    const whatsappButton = document.getElementById('whatsappButton');
     
-    if (!name || !selectedService) {
-        alert("Please enter your name and select a service.");
-        return;
+    if (whatsappButton) {
+        whatsappButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const form = whatsappButton.closest('form');
+            const nameInput = form.querySelector('input[name="name"]');
+            const emailInput = form.querySelector('input[name="mail"]');
+            const phoneInput = form.querySelector('input[name="number"]');
+            const serviceSelect = form.querySelector('select[name="service"]');
+            const messageInput = form.querySelector('textarea');
+            
+            // Get values
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const phone = phoneInput ? phoneInput.value.trim() : '';
+            const selectedService = serviceSelect.options[serviceSelect.selectedIndex]?.text || '';
+            const message = messageInput.value.trim();
+            
+            // Validate form
+            if (!name || !email || !selectedService || !message) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+            
+            // Create a simple message (keep it short and simple)
+            const whatsappMessage = `Hello from ${name}. Inquiry about ${selectedService}. Email: ${email}`;
+            
+            // WhatsApp phone number
+            const phoneNumber = "918075036021";
+            
+            // Create WhatsApp URL with properly encoded text
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            // Open WhatsApp in new tab
+            window.open(whatsappURL, "_blank");
+        });
     }
-
-    const message = `Hello! I am ${name}. I would like to inquire about ${selectedService}.`;
-    const phoneNumber = "7356824950"; 
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
 });
     </script>
 </body>
