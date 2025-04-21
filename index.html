@@ -5,7 +5,280 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oxygen Tours and Travels</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Reviews Section Styles */
+        .reviews {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .review-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .average-rating {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .average-rating h3 {
+            font-size: 3rem;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .rating-breakdown {
+            width: 60%;
+        }
+        
+        .star-row {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        
+        .star-label {
+            width: 50px;
+        }
+        
+        .progress-container {
+            flex-grow: 1;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin: 0 10px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+        
+        .star-count {
+            width: 30px;
+            text-align: right;
+        }
+        
+        /* Updated styles for a more compact review form */
+.review-form-container {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.review-form-container h3 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.review-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.review-form .form-group {
+    margin-bottom: 8px;
+}
+
+.review-form label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+/* Make review text area full width and center submit button */
+.review-form .form-group:last-child {
+    grid-column: 1 / span 2;  /* Make textarea span both columns */
+}
+
+.review-form textarea.form-control {
+    width: 100%;
+    min-height: 80px;
+}
+
+.review-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    position: relative;
+    padding-bottom: 40px;  /* Add space for the button */
+}
+
+.review-form .btn {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .review-form .form-group:last-child {
+        grid-column: 1 / span 1;  /* Return to single column on mobile */
+    }
+    
+    .review-form {
+        grid-template-columns: 1fr;
+        padding-bottom: 40px;
+    }
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-top: 2px;
+}
+
+.star-rating label {
+    font-size: 20px;
+    padding: 0 3px;
+}
+
+.review-form .btn {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    height: auto;
+    min-height: unset;
+    line-height: normal;
+    margin-top: 5px;
+    
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .review-form-container {
+        padding: 12px;
+    }
+    
+    .review-form {
+        gap: 8px;
+    }
+}
+        
+        .review-form .form-group:last-child {
+            grid-column: span 2;
+        }
+        
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+        
+        .star-rating input {
+            display: none;
+        }
+        
+        .star-rating label {
+            color: #ddd;
+            font-size: 24px;
+            padding: 0 5px;
+            cursor: pointer;
+        }
+        
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #ffc107;
+        }
+        
+        .review-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .review-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .review-stars {
+            color: #ffc107;
+        }
+        
+        .review-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .review-filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .filter-buttons button {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 8px 15px;
+            margin-right: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-buttons button.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .sort-dropdown select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .review-stats {
+                flex-direction: column;
+            }
+            
+            .rating-breakdown {
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            .review-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .review-form .form-group:last-child {
+                grid-column: span 1;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -21,11 +294,12 @@
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </header>
-
+    
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
@@ -48,7 +322,7 @@
                     </div>
                     <div class="service-content">
                         <h3>24 hours</h3>
-                        <p>At Oxygen, we understand that travel plans can arise at any hour of the day or night. That’s why we’re proud to offer 24/7 car travel services—ensuring you have access to reliable, comfortable, and safe transportation around the clock.</p>
+                        <p>At Oxygen, we understand that travel plans can arise at any hour of the day or night. That's why we're proud to offer 24/7 car travel services—ensuring you have access to reliable, comfortable, and safe transportation around the clock.</p>
 
                     </div>
                 </div>
@@ -72,6 +346,120 @@
                 </div>
             </div>
               
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container reviews-container">
+            <h2 class="section-title">Customer Reviews</h2>
+            
+            <div class="review-form-container">
+                <h3>Share Your Experience</h3>
+                <form id="reviewForm" class="review-form">
+                    <div class="form-group">
+                        <label for="reviewName">Your Name</label>
+                        <input type="text" id="reviewName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1">★</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewTitle">Review Title</label>
+                        <input type="text" id="reviewTitle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewLocation">Tour Location</label>
+                        <input type="text" id="reviewLocation" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewText">Your Review</label>
+                        <textarea id="reviewText" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Review</button>
+                </form>
+            </div>
+            
+            <div class="review-stats">
+                <div class="average-rating">
+                    <h3 id="averageRatingDisplay">0.0</h3>
+                    <div class="review-stars" id="averageStars">★★★★★</div>
+                    <p><span id="totalReviews">0</span> reviews</p>
+                </div>
+                
+                <div class="rating-breakdown">
+                    <div class="star-row">
+                        <div class="star-label">5 ★</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="fiveStarBar" style="width: 0%"></div>
+                        </div>
+                        <div class="star-count" id="fiveStarCount">0</div>
+                    </div>
+                    <div class="star-row">
+                        <div class="star-label">4 ★</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="fourStarBar" style="width: 0%"></div>
+                        </div>
+                        <div class="star-count" id="fourStarCount">0</div>
+                    </div>
+                    <div class="star-row">
+                        <div class="star-label">3 ★</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="threeStarBar" style="width: 0%"></div>
+                        </div>
+                        <div class="star-count" id="threeStarCount">0</div>
+                    </div>
+                    <div class="star-row">
+                        <div class="star-label">2 ★</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="twoStarBar" style="width: 0%"></div>
+                        </div>
+                        <div class="star-count" id="twoStarCount">0</div>
+                    </div>
+                    <div class="star-row">
+                        <div class="star-label">1 ★</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="oneStarBar" style="width: 0%"></div>
+                        </div>
+                        <div class="star-count" id="oneStarCount">0</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="review-filter">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-rating="all">All</button>
+                    <button class="filter-btn" data-rating="5">5 Star</button>
+                    <button class="filter-btn" data-rating="4">4 Star</button>
+                    <button class="filter-btn" data-rating="3">3 Star</button>
+                    <button class="filter-btn" data-rating="2">2 Star</button>
+                    <button class="filter-btn" data-rating="1">1 Star</button>
+                </div>
+                <div class="sort-dropdown">
+                    <select id="sortReviews">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="highest">Highest Rating</option>
+                        <option value="lowest">Lowest Rating</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="review-list" id="reviewList">
+                <!-- Reviews will be populated here by JavaScript -->
             </div>
         </div>
     </section>
@@ -168,7 +556,6 @@
                         <li><a href="#"><img src="image/icons/facebook-svgrepo-com (1).svg" alt=""></a></li>
                         <li><a href="#"><img src="image/icons/instagram-svgrepo-com.svg" alt=""></a></li>
                         <li><a href="#"><img src="image/icons/map-pin-svgrepo-com.svg" alt=""></a></li>
-                       
                     </ul>
                 </div>
                 
@@ -177,9 +564,8 @@
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
                         <li><a href="#contact">Contact</a></li>
-                        
-                        
                     </ul>
                 </div>
                 
@@ -248,49 +634,275 @@
                 }
             });
         });
-        document.addEventListener('DOMContentLoaded', function() {
-    const whatsappButton = document.getElementById('whatsappButton');
-    
-    if (whatsappButton) {
-        whatsappButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const form = whatsappButton.closest('form');
-            const nameInput = form.querySelector('input[name="name"]');
-            const emailInput = form.querySelector('input[name="mail"]');
-            const phoneInput = form.querySelector('input[name="number"]');
-            const serviceSelect = form.querySelector('select[name="service"]');
-            const messageInput = form.querySelector('textarea');
-            
-            // Get values
-            const name = nameInput.value.trim();
-            const email = emailInput.value.trim();
-            const phone = phoneInput ? phoneInput.value.trim() : '';
-            const selectedService = serviceSelect.options[serviceSelect.selectedIndex]?.text || '';
-            const message = messageInput.value.trim();
-            
-            // Validate form
-            if (!name || !email || !selectedService || !message) {
-                alert("Please fill in all required fields.");
-                return;
+        document.addEventListener('DOMContentLoaded', function () {
+            const whatsappButton = document.getElementById('whatsappButton');
+
+            if (whatsappButton) {
+                whatsappButton.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Get form values
+                    const form = whatsappButton.closest('form');
+                    const name = form.querySelector('input[name="name"]').value.trim();
+                    const email = form.querySelector('input[name="mail"]').value.trim();
+                    const phone = form.querySelector('input[name="number"]').value.trim();
+                    const serviceSelect = form.querySelector('select[name="service"]');
+                    const message = form.querySelector('textarea').value.trim();
+
+                    // Ensure service is selected
+                    const selectedService = serviceSelect.value;
+                    if (!selectedService) {
+                        alert("Please select a service.");
+                        return;
+                    }
+
+                    // Validate required fields
+                    if (!name || !email || !message) {
+                        alert("Please fill in all required fields.");
+                        return;
+                    }
+
+                    // Format message
+                    const whatsappMessage = `Hello, my name is ${name}.
+Service Interested In: ${selectedService}
+Contact: ${phone}
+Email: ${email}
+Message: ${message}`;
+
+                    // Encode message for URL
+                    const encodedMessage = encodeURIComponent(whatsappMessage);
+
+                    // WhatsApp Business Number (Ensure it's correct)
+                    const phoneNumber = "918075036021"; // Provider's WhatsApp number
+
+                    // Create WhatsApp URL
+                    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+                    // Open WhatsApp in a new tab
+                    window.open(whatsappURL, "_blank");
+                });
             }
             
-            // Create a simple message (keep it short and simple)
-            const whatsappMessage = `Hello from ${name}. Inquiry about ${selectedService}. Email: ${email}`;
+            // Reviews System
+            // Check if reviews exist in local storage
+            let reviews = JSON.parse(localStorage.getItem('oxygenTravelReviews')) || [];
             
-            // WhatsApp phone number
-            const phoneNumber = "918075036021";
+            // Sample reviews for initial display
+            if (reviews.length === 0) {
+                const sampleReviews = [
+                    {
+                        id: 1,
+                        name: "Priya Sharma",
+                        rating: 5,
+                        title: "Amazing trip to Munnar",
+                        location: "Munnar",
+                        text: "Our family trip to Munnar was perfectly organized by Oxygen Tours. The driver was punctual, friendly and very knowledgeable about the area. Will definitely book again!",
+                        date: new Date(2025, 2, 15).toISOString()
+                    },
+                    {
+                        id: 2,
+                        name: "Rahul Menon",
+                        rating: 4,
+                        title: "Great service for Wayanad trip",
+                        location: "Wayanad",
+                        text: "We had a wonderful experience with Oxygen Tours for our Wayanad trip. The vehicle was comfortable and the itinerary was well-planned. Only suggestion would be to include more local food options.",
+                        date: new Date(2025, 3, 2).toISOString()
+                    },
+                    {
+                        id: 3,
+                        name: "Anjali Thomas",
+                        rating: 5,
+                        title: "Exceptional service",
+                        location: "Kochi",
+                        text: "I booked their 24-hour car service for my parents who were visiting Kochi. The driver was very courteous and professional. My parents felt safe and comfortable throughout the trip.",
+                        date: new Date(2025, 3, 5).toISOString()
+                    }
+                ];
+                
+                reviews = sampleReviews;
+                localStorage.setItem('oxygenTravelReviews', JSON.stringify(reviews));
+            }
             
-            // Create WhatsApp URL with properly encoded text
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            // Review Form Submission
+            const reviewForm = document.getElementById('reviewForm');
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('reviewName').value.trim();
+                const ratingInput = document.querySelector('input[name="rating"]:checked');
+                const title = document.getElementById('reviewTitle').value.trim();
+                const location = document.getElementById('reviewLocation').value.trim();
+                const text = document.getElementById('reviewText').value.trim();
+                
+                // Validate form
+                if (!name || !ratingInput || !title || !location || !text) {
+                    alert("Please fill out all fields and select a rating.");
+                    return;
+                }
+                
+                const rating = parseInt(ratingInput.value);
+                
+                // Create new review object
+                const newReview = {
+                    id: Date.now(),
+                    name: name,
+                    rating: rating,
+                    title: title,
+                    location: location,
+                    text: text,
+                    date: new Date().toISOString()
+                };
+                
+                // Add to reviews array
+                reviews.unshift(newReview);
+                
+                // Save to local storage
+                localStorage.setItem('oxygenTravelReviews', JSON.stringify(reviews));
+                
+                // Reset form
+                reviewForm.reset();
+                
+                // Update display
+                displayReviews();
+                updateReviewStats();
+                
+                alert("Thank you for your review!");
+            });
             
-            // Open WhatsApp in new tab
-            window.open(whatsappURL, "_blank");
-        });
-    }
+            // Filter reviews
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    displayReviews();
+                });
+            });
+            
+            // Sort reviews
+            const sortSelect = document.getElementById('sortReviews');
+            sortSelect.addEventListener('change', function() {
+                displayReviews();
+            });
+            
+            // Function to display reviews
+            function displayReviews() {
+                const reviewList = document.getElementById('reviewList');
+                reviewList.innerHTML = '';
+                
+                // Get current filter and sort options
+                const activeFilter = document.querySelector('.filter-btn.active').dataset.rating;
+                const sortOption = document.getElementById('sortReviews').value;
+                
+                // Filter reviews
+                let filteredReviews = [...reviews];
+                if (activeFilter !== 'all') {
+                    const filterRating = parseInt(activeFilter);
+                    filteredReviews = reviews.filter(review => review.rating === filterRating);
+                }
+                
+                // Sort reviews
+                switch(sortOption) {
+                    case 'newest':
+                        filteredReviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+                        break;
+                    case 'oldest':
+                        filteredReviews.sort((a, b) => new Date(a.date) - new Date(b.date));
+                        break;
+                    case 'highest':
+                        filteredReviews.sort((a, b) => b.rating - a.rating);
+                        break;
+                    case 'lowest':
+                        filteredReviews.sort((a, b) => a.rating - b.rating);
+                        break;
+                }
+                
+                // Display reviews
+                if (filteredReviews.length === 0) {
+                    reviewList.innerHTML = '<p class="no-reviews">No reviews match your filter criteria.</p>';
+                } else {
+                    filteredReviews.forEach(review => {
+                        const reviewDate = new Date(review.date);
+                        const formattedDate = reviewDate.toLocaleDateString('en-IN', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                        });
+                        
+                        const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+                        
+                        const reviewCard = document.createElement('div');
+                        reviewCard.classList.add('review-card');
+                        reviewCard.innerHTML = `
+                            <div class="review-header">
+                                <h4>${review.title}</h4>
+                                <div class="review-date">${formattedDate}</div>
+                            </div>
+                            <div class="review-stars">${stars}</div>
+                            <p><strong>${review.name}</strong> - ${review.location}</p>
+                            <p>${review.text}</p>
+                        `;
+                        
+                        reviewList.appendChild(reviewCard);
+                    });
+                }
+            }
+            
+            
+            // Function to update review statistics
+            function updateReviewStats() {
+                const totalReviews = reviews.length;
+                document.getElementById('totalReviews').textContent = totalReviews;
+                
+                // Count reviews by rating
+                const ratingCounts = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+                let ratingSum = 0;
+                
+                reviews.forEach(review => {
+                    ratingCounts[review.rating]++;
+                    ratingSum += review.rating;
+                });
+                
+                // Update rating counts and bars
+                for (let i = 1; i <= 5; i++) {
+                    const count = ratingCounts[i];
+                    const percentage = totalReviews > 0 ? (count / totalReviews) * 100 : 0;
+                    
+                    document.getElementById(`${getNumberWord(i)}StarCount`).textContent = count;
+                    document.getElementById(`${getNumberWord(i)}StarBar`).style.width = `${percentage}%`;
+                }
+                
+                // Update average rating
+                const averageRating = totalReviews > 0 ? (ratingSum / totalReviews).toFixed(1) : '0.0';
+                document.getElementById('averageRatingDisplay').textContent = averageRating;
+                
+                // Continuing from where we left off in the review system code:
+
+// Update average stars
+const fullStars = Math.floor(averageRating);
+const halfStar = averageRating % 1 >= 0.5;
+const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+const averageStarsHTML = '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
+document.getElementById('averageStars').innerHTML = averageStarsHTML;
+}
+
+// Helper function to convert number to word
+function getNumberWord(num) {
+    const words = ['zero', 'one', 'two', 'three', 'four', 'five'];
+    return words[num];
+}
+
+// Initialize review display and stats
+displayReviews();
+updateReviewStats();
 });
     </script>
 </body>
 </html>
+
+

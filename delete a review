@@ -1,0 +1,87 @@
+// js code to remove a review
+
+
+// Function to display reviews
+function displayReviews() {
+    const reviewList = document.getElementById('reviewList');
+    reviewList.innerHTML = '';
+    
+    // Get current filter and sort options
+    const activeFilter = document.querySelector('.filter-btn.active').dataset.rating;
+    const sortOption = document.getElementById('sortReviews').value;
+    
+    // Filter reviews
+    let filteredReviews = [...reviews];
+    if (activeFilter !== 'all') {
+        const filterRating = parseInt(activeFilter);
+        filteredReviews = reviews.filter(review => review.rating === filterRating);
+    }
+    
+    // Sort reviews
+    switch(sortOption) {
+        case 'newest':
+            filteredReviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+            break;
+        case 'oldest':
+            filteredReviews.sort((a, b) => new Date(a.date) - new Date(b.date));
+            break;
+        case 'highest':
+            filteredReviews.sort((a, b) => b.rating - a.rating);
+            break;
+        case 'lowest':
+            filteredReviews.sort((a, b) => a.rating - b.rating);
+            break;
+    }
+    
+    // Display reviews
+    if (filteredReviews.length === 0) {
+        reviewList.innerHTML = '<p class="no-reviews">No reviews match your filter criteria.</p>';
+    } else {
+        filteredReviews.forEach(review => {
+            const reviewDate = new Date(review.date);
+            const formattedDate = reviewDate.toLocaleDateString('en-IN', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+            
+            const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+            
+            const reviewCard = document.createElement('div');
+            reviewCard.classList.add('review-card');
+            reviewCard.innerHTML = `
+                <div class="review-header">
+                    <h4>${review.title}</h4>
+                    <div class="review-date">${formattedDate}</div>
+                </div>
+                <div class="review-stars">${stars}</div>
+                <p><strong>${review.name}</strong> - ${review.location}</p>
+                <p>${review.text}</p>
+                <button class="remove-review" data-id="${review.id}">Remove</button>
+            `;
+            
+            reviewList.appendChild(reviewCard);
+        });
+    }
+    
+    // Add event listener for remove buttons
+    document.querySelectorAll('.remove-review').forEach(button => {
+        button.addEventListener('click', function() {
+            const reviewId = parseInt(this.getAttribute('data-id'));
+            removeReview(reviewId);
+        });
+    });
+}
+
+// Function to remove a review
+function removeReview(id) {
+    // Filter out the review to remove
+    reviews = reviews.filter(review => review.id !== id);
+    
+    // Update the local storage
+    localStorage.setItem('oxygenTravelReviews', JSON.stringify(reviews));
+    
+    // Update the display and stats
+    displayReviews();
+    updateReviewStats();
+}
