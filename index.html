@@ -5,280 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oxygen Tours and Travels</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Reviews Section Styles */
-        .reviews {
-            padding: 80px 0;
-            background-color: #f9f9f9;
-        }
-        
-        .reviews-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .review-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .average-rating {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .average-rating h3 {
-            font-size: 3rem;
-            margin: 0;
-            color: var(--primary);
-        }
-        
-        .rating-breakdown {
-            width: 60%;
-        }
-        
-        .star-row {
-            display: flex;
-            align-items: center;
-            margin: 5px 0;
-        }
-        
-        .star-label {
-            width: 50px;
-        }
-        
-        .progress-container {
-            flex-grow: 1;
-            height: 8px;
-            background-color: #e0e0e0;
-            border-radius: 4px;
-            margin: 0 10px;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background-color: var(--primary);
-            border-radius: 4px;
-        }
-        
-        .star-count {
-            width: 30px;
-            text-align: right;
-        }
-        
-        /* Updated styles for a more compact review form */
-.review-form-container {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.review-form-container h3 {
-    font-size: 1.2rem;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.review-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-
-.review-form .form-group {
-    margin-bottom: 8px;
-}
-
-.review-form label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 2px;
-}
-/* Make review text area full width and center submit button */
-.review-form .form-group:last-child {
-    grid-column: 1 / span 2;  /* Make textarea span both columns */
-}
-
-.review-form textarea.form-control {
-    width: 100%;
-    min-height: 80px;
-}
-
-.review-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    position: relative;
-    padding-bottom: 40px;  /* Add space for the button */
-}
-
-.review-form .btn {
-    padding: 6px 10px;
-    font-size: 0.85rem;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    display: inline-block;
-    margin-top: 10px;
-}
-
-@media (max-width: 768px) {
-    .review-form .form-group:last-child {
-        grid-column: 1 / span 1;  /* Return to single column on mobile */
-    }
     
-    .review-form {
-        grid-template-columns: 1fr;
-        padding-bottom: 40px;
-    }
-}
-
-.star-rating {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    margin-top: 2px;
-}
-
-.star-rating label {
-    font-size: 20px;
-    padding: 0 3px;
-}
-
-.review-form .btn {
-    padding: 6px 10px;
-    font-size: 0.85rem;
-    height: auto;
-    min-height: unset;
-    line-height: normal;
-    margin-top: 5px;
-    
-    display: inline-block;
-}
-
-@media (max-width: 768px) {
-    .review-form-container {
-        padding: 12px;
-    }
-    
-    .review-form {
-        gap: 8px;
-    }
-}
-        
-        .review-form .form-group:last-child {
-            grid-column: span 2;
-        }
-        
-        .star-rating {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-        }
-        
-        .star-rating input {
-            display: none;
-        }
-        
-        .star-rating label {
-            color: #ddd;
-            font-size: 24px;
-            padding: 0 5px;
-            cursor: pointer;
-        }
-        
-        .star-rating input:checked ~ label,
-        .star-rating label:hover,
-        .star-rating label:hover ~ label {
-            color: #ffc107;
-        }
-        
-        .review-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .review-card {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        
-        .review-stars {
-            color: #ffc107;
-        }
-        
-        .review-date {
-            color: #777;
-            font-size: 0.9rem;
-        }
-        
-        .review-filter {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        
-        .filter-buttons button {
-            background: none;
-            border: 1px solid #ddd;
-            padding: 8px 15px;
-            margin-right: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .filter-buttons button.active {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        
-        .sort-dropdown select {
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-        
-        @media (max-width: 768px) {
-            .review-stats {
-                flex-direction: column;
-            }
-            
-            .rating-breakdown {
-                width: 100%;
-                margin-top: 20px;
-            }
-            
-            .review-form {
-                grid-template-columns: 1fr;
-            }
-            
-            .review-form .form-group:last-child {
-                grid-column: span 1;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Header -->
@@ -304,51 +31,52 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1>Explore the World with Oxygen Tours and Travels</h1>
-                <p>Experience breathtaking destinations with our professional travel services. We make your dream vacations a reality.</p>
-                <a href="#services" class="btn">Explore Our Services</a>
+                <h1>Explore with Oxygen Tours and Travels</h1>
+            <p>Looking for a taxi in Thrissur or Guruvayur? Explore breathtaking destinations with our professional travel services. We provide the best taxi services for your comfort and convenience, making your journey memorable.</p>                <a href="#services" class="btn">Explore Our Services</a>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="image/360_F_300042223_6w2xFehw6jpdtl3JrCdqYf9ilbHRnLkk.jpg" alt="24 Hours">
-                    </div>
-                    <div class="service-content">
-                        <h3>24 hours</h3>
-                        <p>At Oxygen, we understand that travel plans can arise at any hour of the day or night. That's why we're proud to offer 24/7 car travel services—ensuring you have access to reliable, comfortable, and safe transportation around the clock.</p>
+   <section class="services" id="services">
+    <div class="container">
+        <h2 class="section-title">Our Car and Travel Services in Thrissur & Guruvayur</h2>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="image/24HOURS.png" alt="24 Hours Car Service Thrissur Guruvayur">
+                </div>
+                <div class="service-content">
+                    <h3>24/7 Car Services</h3>
+                    <p>Need a taxi in Thrissur or Guruvayur, even at midnight? At Oxygen Travels, we provide 24/7 car services, ensuring you get safe, reliable, and comfortable rides anytime you need. Whether it’s an early morning airport drop or a late-night pickup, we’re just a call away.</p>
+                </div>
+            </div>
 
-                    </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="image/DOMESTICTOUR.png" alt="Domestic Tour Packages from Thrissur Guruvayur" class="service-image">
                 </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="image/Download Travel India elements panorama design for free.jpeg" style="height: 400; width: 400px;" alt="Domestic Tours">
-                    </div>
-                    <div class="service-content">
-                        <h3>Domestic Tours</h3>
-                        <p>Explore the beauty of your own country with our domestic tour packages. Weekend getaways, heritage tours, adventure trips - we offer diverse experiences for all travelers.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="image/Kochi Pictures _ Freepik.jpeg" alt="Custom Tour Packages">
-                    </div>
-                    <div class="service-content">
-                        <h3>Custom Tour Packages</h3>
-                        <p>Want something special? Our travel experts will help you design a personalized itinerary based on your preferences, budget, and travel style.</p>
-                    </div>
+                <div class="service-content">
+                    <h3>Domestic Tours and Packages</h3>
+                    <p>Discover India like never before with our exciting domestic tour packages from Thrissur and Guruvayur. From scenic weekend getaways to cultural heritage tours, we offer memorable travel experiences that are customized for all kinds of explorers.</p>
                 </div>
             </div>
-              
+
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="image/Kochi Pictures _ Freepik.jpeg" alt="Custom Taxi Packages Thrissur Guruvayur">
+                </div>
+                <div class="service-content">
+                    <h3>Custom Tour Packages</h3>
+                    <p>Looking for a personalized travel plan? Our expert team in Thrissur and Guruvayur will design tailor-made tour and taxi packages based on your needs, budget, and travel dreams. Your perfect journey starts with us!</p>
+                </div>
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Reviews Section -->
     <section class="reviews" id="reviews">
